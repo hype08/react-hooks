@@ -1,20 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-let value; // define value global scope so that it will not be reinitialized every time the function gets called.
+// global name space to store multiple Hook values
+let values = []; // define an array instead, so we can define multiple hooks
+let currentHook = 0;
 
 function useState(initialState) {
-  if (typeof value === "undefined") value = initialState;
+  if (typeof values[currentHook] === "undefined")
+    values[currentHook] = initialState;
 
+  let hookIndex = currentHook;
   function setState(nextValue) {
-    value = nextValue;
+    values[hookIndex] = nextValue;
     ReactDOM.render(<MyName />, document.getElementById("root"));
   }
 
-  return [value, setState];
+  return [values[currentHook++], setState];
 }
 
 function MyName() {
+  currentHook = 0; // set to 0 at the start of component render
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState(""); // problem: writing to the same global value variable
 
