@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+let value; // define value global scope so that it will not be reinitialized every time the function gets called.
+
 function useState(initialState) {
-  let value = initialState;
+  if (typeof value === "undefined") value = initialState;
 
   function setState(nextValue) {
     value = nextValue;
@@ -14,10 +16,14 @@ function useState(initialState) {
 
 function MyName() {
   const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [lastName, setLastName] = useState(""); // problem: writing to the same global value variable
 
-  function handleChange(evt) {
+  function handleName(evt) {
     setName(evt.target.value);
+  }
+
+  function handleLastName(evt) {
+    setLastName(evt.target.value);
   }
 
   return (
@@ -25,7 +31,8 @@ function MyName() {
       <h1>
         My name is: {name} {lastName}
       </h1>
-      <input type="text" value={name} onChange={handleChange} />
+      <input type="text" value={name} onChange={handleName} />
+      <input type="text" value={lastName} onChange={handleLastName} />
     </div>
   );
 }
