@@ -2,21 +2,28 @@ import React from "react";
 
 import "./App.css";
 import UserBar from "./user/UserBar";
-import Post from "./post/Post";
 import CreatePost from "./post/CreatePost";
+import PostList from "./post/PostList";
 
-function App() {
+const posts = [
+  {
+    title: "React Hooks",
+    content: "The greatest thing since sliced bread",
+    author: "Henry"
+  },
+  {
+    title: "React Fragments",
+    content: "The greatest thing since sliced bread",
+    author: "Henry"
+  }
+];
+
+export default function App() {
   return (
     <>
       <UserBar />
       <CreatePost />
-      <Post
-        title="React Hooks"
-        content="The greatest thing since sliced bread"
-        author="Henry"
-      />
+      <PostList posts={posts} />
     </>
   );
 }
-
-export default App;
