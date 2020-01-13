@@ -1,11 +1,9 @@
-import React from 'react';
-import './App.css';
-// import Login from './user/Login';
-// import Logout from './user/Logout';
-import Register from './user/Register';
+import React from "react";
+import "./App.css";
+import UserBar from "./user/UserBar";
 
 function App() {
-  return <Register />
+  return <UserBar />;
 }
 
 export default App;
