@@ -1,5 +1,5 @@
 {
-  "name": "3_1",
+  "name": "3_3",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,8 +10,7 @@
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "^2.1.8",
-    "husky": "^4.0.7"
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,5 +43,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "devDependencies": {
+    "husky": "^4.0.7"
   }
 }
