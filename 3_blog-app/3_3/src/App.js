@@ -1,11 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 import "./App.css";
 import UserBar from "./user/UserBar";
 import CreatePost from "./post/CreatePost";
 import PostList from "./post/PostList";
 
-const user = "Henry";
 const posts = [
   {
     title: "React Hooks",
@@ -20,9 +19,11 @@ const posts = [
 ];
 
 export default function App() {
+  const [user, setUser] = useState("");
+
   return (
     <div style={{ padding: 8 }}>
-      <UserBar user={user} />
+      <UserBar user={user} setUser={setUser}/>
       <br />
       <CreatePost user={user} />
       <br />
