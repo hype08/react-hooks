@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import "./App.css";
 import UserBar from "./user/UserBar";
@@ -23,9 +23,9 @@ export default function App() {
 
   return (
     <div style={{ padding: 8 }}>
-      <UserBar user={user} setUser={setUser}/>
+      <UserBar user={user} setUser={setUser} />
       <br />
-      <CreatePost user={user} />
+      {user && <CreatePost user={user} />}
       <br />
       <hr />
       <PostList posts={posts} />
