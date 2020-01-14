@@ -5,8 +5,8 @@ export default function CreatePost({ user, posts, setPosts }) {
   const [content, setContent] = useState("");
 
   function handleCreate() {
-    const newPost = { title, content, author: user }; // new Post object definition
-    setPosts([newPost, ...posts]);
+    const newPost = { title, content, author: user }; // new Post object definition.
+    setPosts([newPost, ...posts]); // add post to top of feed.
   }
 
   function handleTitle(e) {
