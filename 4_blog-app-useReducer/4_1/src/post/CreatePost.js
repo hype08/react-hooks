@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-export default function CreatePost({ user, posts, setPosts }) {
+export default function CreatePost({ user, posts, dispatch }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   function handleCreate() {
-    const newPost = { title, content, author: user }; // new Post object definition.
-    setPosts([newPost, ...posts]); // add post to top of feed.
+    dispatch({ type: "CREATE_POST", title, content, author: user });
   }
 
   function handleTitle(e) {
