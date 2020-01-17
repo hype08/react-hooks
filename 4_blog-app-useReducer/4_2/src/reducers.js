@@ -15,7 +15,7 @@ export default function appReducer(state, action){
         };
         return [newPost, ...state];
       default:
-        return new Error();
+        return state
     }
   }
 
@@ -27,6 +27,6 @@ export default function appReducer(state, action){
       case "LOGOUT":
         return "";
       default:
-        throw new Error();
+        return state
     }
   }
