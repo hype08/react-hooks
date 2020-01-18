@@ -2,7 +2,7 @@
 
 4_1 - Define Actions  
 4_2 - Reducer Function & Reducer Hook
-4_3 - Effect Hook
+4_3 - Effect Hook  
 
 ## Getting Started & Install
 
