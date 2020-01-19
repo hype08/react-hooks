@@ -4,6 +4,7 @@ import "./App.css";
 import UserBar from "./user/UserBar";
 import CreatePost from "./post/CreatePost";
 import PostList from "./post/PostList";
+import Header from './Header'
 import appReducer from "./reducers";
 
 const defaultPosts = [
@@ -37,6 +38,7 @@ export default function App() {
 
   return (
     <div style={{ padding: 8 }}>
+      <Header text="React Hooks Blog"/>
       <UserBar user={user} dispatch={dispatch} />
       <br />
       {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
