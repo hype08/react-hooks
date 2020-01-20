@@ -1,10 +1,11 @@
 import React, { useReducer, useEffect } from "react";
+import { ThemeContext } from "./contexts";
 
 import "./App.css";
 import UserBar from "./user/UserBar";
 import CreatePost from "./post/CreatePost";
 import PostList from "./post/PostList";
-import Header from './Header'
+import Header from "./Header";
 import appReducer from "./reducers";
 
 const defaultPosts = [
@@ -37,14 +38,18 @@ export default function App() {
   }, [user]);
 
   return (
-    <div style={{ padding: 8 }}>
-      <Header text="React Hooks Blog"/>
-      <UserBar user={user} dispatch={dispatch} />
-      <br />
-      {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
-      <br />
-      <hr />
-      <PostList posts={posts} />
-    </div>
+    <ThemeContext.Provider
+      value={{ primaryColor: "deepskyblue", secondaryColor: "coral" }}
+    >
+      <div style={{ padding: 8 }}>
+        <Header text="React Hooks Blog" />
+        <UserBar user={user} dispatch={dispatch} />
+        <br />
+        {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
+        <br />
+        <hr />
+        <PostList posts={posts} />
+      </div>
+    </ThemeContext.Provider>
   );
 }
