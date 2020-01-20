@@ -50,12 +50,12 @@ export default function App() {
           <Header text="React Hooks Blog" />
           <ChangeTheme theme={theme} setTheme={setTheme} />
           <br />
-          <UserBar user={user} dispatch={dispatch} />
+          <UserBar />
           <br />
-          {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
+          {user && <CreatePost />}
           <br />
           <hr />
-          <PostList posts={posts} />
+          <PostList />
         </div>
       </ThemeContext.Provider>
     </StateContext.Provider>
