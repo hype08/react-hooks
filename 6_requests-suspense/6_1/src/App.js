@@ -1,5 +1,4 @@
 import React, { useReducer, useEffect, useState } from "react";
-import { ThemeContext, StateContext } from "./contexts";
 
 import "./App.css";
 import UserBar from "./user/UserBar";
@@ -7,6 +6,7 @@ import CreatePost from "./post/CreatePost";
 import PostList from "./post/PostList";
 import Header from "./Header";
 import ChangeTheme from "./ChangeTheme";
+import { ThemeContext, StateContext } from "./contexts";
 import appReducer from "./reducers";
 
 const defaultPosts = [
@@ -33,7 +33,7 @@ export default function App() {
     posts: defaultPosts
   });
 
-  const { user, posts } = state;
+  const { user } = state;
 
   useEffect(() => {
     if (user) {
