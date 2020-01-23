@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "id": "react-hooks",
+      "title": "React Hooks",
+      "content": "The greatest thing since sliced bread!"
+    },
+    {
+      "id": "react-fragments",
+      "title": "React Fragments",
+      "content": "Using React Fragments"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "henry",
+      "password": "supersecure"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "primaryColor": "deepskyblue",
+      "secondaryColor": "coral"
+    },
+    {
+      "id": 2,
+      "primaryColor": "orchid",
+      "secondaryColor": "mediumseagreen"
+    },
+    {
+      "id": 3,
+      "primaryColor": "darkslategray",
+      "secondaryColor": "slategray"
+    }
+  ]
+}
