@@ -14,7 +14,7 @@
   "users": [
     {
       "id": 1,
-      "username": "Henry",
+      "username": "henry",
       "password": "supersecure"
     }
   ],
