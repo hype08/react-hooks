@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect, useState } from "react";
+import { useResource } from "react-request-hook";
 
 import "./App.css";
 import UserBar from "./user/UserBar";
@@ -22,11 +23,19 @@ export default function App() {
 
   const { user } = state;
 
+  const [posts, getPosts] = useResource(() => ({
+    url: "/posts",
+    method: "get"
+  }));
+
+  useEffect(getPosts, []);
+
+  // dispatch FETCH_POSTS if data exists, and trigger it every time the post object updates.
   useEffect(() => {
-    fetch("./api/posts")
-      .then(result => result.json())
-      .then(posts => dispatch({ type: "FETCH_POSTS", posts }));
-  }, []);
+    if (posts && posts.data) {
+      dispatch({ type: "FETCH_POSTS", posts: posts.data });
+    }
+  }, [posts]);
 
   useEffect(() => {
     if (user) {
