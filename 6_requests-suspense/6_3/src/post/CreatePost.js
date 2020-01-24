@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useResource } from "react-request-hook";
 import { StateContext } from "../contexts";
 
 export default function CreatePost() {
@@ -7,7 +8,15 @@ export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  // pass post data to the createPost function.
+  const [, createPost] = useResource(({ title, author, content }) => ({
+    url: "/posts",
+    method: "posts",
+    data: { title, author, content }
+  }));
+
   function handleCreate() {
+    createPost({ title, author: user, content });
     dispatch({ type: "CREATE_POST", title, content, author: user });
   }
 
