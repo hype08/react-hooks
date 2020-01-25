@@ -31,6 +31,7 @@ export default function App() {
 
   useEffect(getPosts, []);
 
+  // dispatch ERROR message if failure to fetch.
   // dispatch FETCH_POSTS if data exists, and trigger it every time the post object updates.
   useEffect(() => {
     if (posts && posts.error) {
