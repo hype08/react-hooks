@@ -3,12 +3,14 @@
     {
       "id": "react-hooks",
       "title": "React Hooks",
-      "content": "The greatest thing since sliced bread!"
+      "content": "The greatest thing since sliced bread!",
+      "author": "Henry"
     },
     {
       "id": "react-fragments",
       "title": "React Fragments",
-      "content": "Using React Fragments"
+      "content": "Using React Fragments",
+      "author": "Henry"
     }
   ],
   "users": [
