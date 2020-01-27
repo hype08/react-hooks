@@ -1,11 +1,11 @@
 import React, { useReducer, useEffect, useState } from "react";
-import { useResource } from "react-request-hook";
 
 import "./App.css";
-import PostList from "./post/PostList";
+
 import { ThemeContext, StateContext } from "./contexts";
 import appReducer from "./reducers";
 import HeaderBar from "./pages/HeaderBar";
+import HomePage from "./pages/HomePage";
 
 export default function App() {
   const [theme, setTheme] = useState({
@@ -19,25 +19,7 @@ export default function App() {
     error: ""
   });
 
-  const { user, error } = state;
-
-  const [posts, getPosts] = useResource(() => ({
-    url: "/posts",
-    method: "get"
-  }));
-
-  useEffect(getPosts, []);
-
-  // dispatch ERROR message if failure to fetch.
-  // dispatch FETCH_POSTS if data exists, and trigger it every time the post object updates.
-  useEffect(() => {
-    if (posts && posts.error) {
-      dispatch({ type: "POSTS_ERROR" });
-    }
-    if (posts && posts.data) {
-      dispatch({ type: "FETCH_POSTS", posts: posts.data.reverse() }); // newest posts listed first.
-    }
-  }, [posts]);
+  const { user } = state;
 
   useEffect(() => {
     if (user) {
@@ -54,8 +36,7 @@ export default function App() {
           <HeaderBar setTheme={setTheme} />
           <br />
           <hr />
-          {error && <b> {error} </b>}
-          <PostList />
+          <HomePage />
         </div>
       </ThemeContext.Provider>
     </StateContext.Provider>
