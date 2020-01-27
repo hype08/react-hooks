@@ -5,7 +5,7 @@
 7_1 Creating Pages  
 
 ```
-cd 6_5 && npm install
+cd 7_1 && npm install
 ```
 
 ## Run
