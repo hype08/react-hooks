@@ -3,6 +3,7 @@
 ## Getting Started & Install
 
 7_1 Creating Pages  
+7_2 Implement Routing  
 
 ```
 cd 7_1 && npm install
