@@ -12,7 +12,7 @@ export default function CreatePost() {
   // we dont need to store the post in state, so ignore first value of array by not specifying it and putting a comma.
   const [post, createPost] = useResource(({ title, author, content }) => ({
     url: "/posts",
-    method: "posts",
+    method: "post",
     data: { title, author, content }
   }));
 
