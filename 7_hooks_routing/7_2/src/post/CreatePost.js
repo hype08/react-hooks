@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
 import { StateContext } from "../contexts";
 
@@ -10,15 +10,20 @@ export default function CreatePost() {
 
   // pass post data to the createPost function.
   // we dont need to store the post in state, so ignore first value of array by not specifying it and putting a comma.
-  const [, createPost] = useResource(({ title, author, content }) => ({
+  const [post, createPost] = useResource(({ title, author, content }) => ({
     url: "/posts",
     method: "posts",
     data: { title, author, content }
   }));
 
+  useEffect(() => {
+    if (post && post.data) {
+      dispatch({ type: "CREATE_POST", ...post.data });
+    }
+  }, [post]);
+
   function handleCreate() {
     createPost({ title, author: user, content });
-    dispatch({ type: "CREATE_POST", title, content, author: user });
   }
 
   function handleTitle(e) {
