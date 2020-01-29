@@ -21,7 +21,6 @@ function Post({ id, title, content, author, short = false }) {
           <Link href={`/view/${id}`}>View full post</Link>
         </div>
       )}
-      <div>{content}</div>
       <br />
       <i>
         Written by <b>{author}</b>
