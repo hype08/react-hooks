@@ -11,7 +11,7 @@ export default function PostList() {
     <div>
       {posts.map((post, i) => (
         <>
-          <Post {...post} key={`post-` + i} />
+          <Post short={true} {...post} key={`post-` + i} />
           {/* {...post} spread operator is same as 
           <Post title={post.title} content={post.content} author={post.author}/>
           */}
