@@ -4,6 +4,7 @@
 
 7_1 Creating Pages  
 7_2 Implement Routing  
+7_3 Using Route Hooks  
 
 ```
 cd 7_1 && npm install
