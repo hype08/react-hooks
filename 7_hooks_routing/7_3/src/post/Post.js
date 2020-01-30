@@ -29,4 +29,10 @@ function Post({ id, title, content, author, short = false }) {
   );
 }
 
-export default React.memo(Post);
+export default React.memo(
+  Post,
+  (prev, next) =>
+    prev.title === next.title &&
+    prev.content === next.content &&
+    prev.author === next.author
+);

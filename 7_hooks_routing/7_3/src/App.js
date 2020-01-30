@@ -8,6 +8,7 @@ import appReducer from "./reducers";
 import HeaderBar from "./pages/HeaderBar";
 import HomePage from "./pages/HomePage";
 import PostPage from "./pages/PostPage";
+import FooterBar from "./pages/FooterBar";
 
 const routes = mount({
   "/": route({ view: <HomePage /> }),
@@ -47,6 +48,7 @@ export default function App() {
             <br />
             <hr />
             <View />
+            <FooterBar />
           </div>
         </Router>
       </ThemeContext.Provider>
