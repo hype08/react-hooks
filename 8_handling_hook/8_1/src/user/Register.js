@@ -1,13 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
 import { StateContext } from "../contexts";
+import { useInput } from "react-hookedup";
 
 export default function Register() {
   const { dispatch } = useContext(StateContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState("");
-
+  const { value: username, bindToInput: bindUsername } = useInput("");
+  const { value: password, bindToInput: bindPassword } = useInput("");
+  const { value: passwordRepeat, bindToInput: bindPasswordRepeat } = useInput(
+    ""
+  );
   const [user, register] = useResource((username, password) => ({
     url: "/users",
     method: "post",
@@ -20,18 +22,6 @@ export default function Register() {
     }
   }, [user]);
 
-  function handleUsername(e) {
-    setUsername(e.target.value);
-  }
-
-  function handlePassword(e) {
-    setPassword(e.target.value);
-  }
-
-  function handlePasswordRepeat(e) {
-    setPasswordRepeat(e.target.value);
-  }
-
   return (
     <form
       onSubmit={e => {
@@ -42,23 +32,23 @@ export default function Register() {
       <label htmlFor="register-username">Username: </label>
       <input
         type="text"
-        onChange={handleUsername}
+        {...bindUsername}
         name="register-username"
         id="register-username"
       />
       <label htmlFor="register-password">Password: </label>
       <input
-        type="text"
+        type="password"
         value={password}
-        onChange={handlePassword}
+        {...bindPassword}
         name="register-password"
         id="register-password"
       />
       <label htmlFor="register-password-repeat">Repeat password: </label>
       <input
-        type="text"
+        type="password"
         value={passwordRepeat}
-        onChange={handlePasswordRepeat}
+        {...bindPasswordRepeat}
         name="register-password-repeat"
         id="register-password-repeat"
       />
