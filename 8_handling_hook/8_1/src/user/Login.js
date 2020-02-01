@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
 import { StateContext } from "../contexts";
+import { useInput } from "react-hookedup";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
+  const { value: username, bindToInput: bindUsername } = useInput("");
+  const { value: password, bindToInput: bindPassword } = useInput("");
   const [loginFailed, setLoginFailed] = useState(false);
-  const [password, setPassword] = useState("");
   const { dispatch } = useContext(StateContext);
   const [user, login] = useResource((username, password) => ({
     url: `/login/${encodeURI(username)}/${encodeURI(password)}`,
@@ -26,14 +27,6 @@ export default function Login() {
     }
   }, [user]);
 
-  function handleUsername(e) {
-    setUsername(e.target.value);
-  }
-
-  function handlePassword(e) {
-    setPassword(e.target.value);
-  }
-
   return (
     <form
       onSubmit={e => {
@@ -45,17 +38,17 @@ export default function Login() {
       <input
         type="text"
         value={username}
+        {...bindUsername}
         name="login-username"
         id="login-username"
-        onChange={handleUsername}
       />
       <label htmlFor="login-password">Password: </label>
       <input
         type="password"
         value={password}
+        {...bindPassword}
         name="login-password"
         id="login-password"
-        onChange={handlePassword}
       />
       <input type="submit" value="Login" disabled={username.length === 0} />
       {loginFailed && (
