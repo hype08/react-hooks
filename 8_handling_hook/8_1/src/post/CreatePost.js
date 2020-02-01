@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
 import { useNavigation } from "react-navi";
 import { StateContext } from "../contexts";
@@ -8,7 +8,7 @@ export default function CreatePost() {
   const { state, dispatch } = useContext(StateContext);
   const { user } = state;
   const { value: title, bindToInput: bindTitle } = useInput("");
-  const { value: content, bindToInput: bindContent } = useInpust("");
+  const { value: content, bindToInput: bindContent } = useInput("");
 
   // pass post data to the createPost function.
   // we dont need to store the post in state, so ignore first value of array by not specifying it and putting a comma.
