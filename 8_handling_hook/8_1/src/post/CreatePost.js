@@ -2,12 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
 import { useNavigation } from "react-navi";
 import { StateContext } from "../contexts";
+import { useInput } from "react-hookedup";
 
 export default function CreatePost() {
   const { state, dispatch } = useContext(StateContext);
   const { user } = state;
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const { value: title, bindToInput: bindTitle } = useInput("");
+  const { value: content, bindToInput: bindContent } = useInpust("");
 
   // pass post data to the createPost function.
   // we dont need to store the post in state, so ignore first value of array by not specifying it and putting a comma.
@@ -30,14 +31,6 @@ export default function CreatePost() {
     createPost({ title, author: user, content });
   }
 
-  function handleTitle(e) {
-    setTitle(e.target.value);
-  }
-
-  function handleContent(e) {
-    setContent(e.target.value);
-  }
-
   return (
     <form
       onSubmit={e => {
@@ -53,12 +46,12 @@ export default function CreatePost() {
         <input
           type="text"
           value={title}
-          onChange={handleTitle}
+          {...bindTitle}
           name="create-title"
           id="create-title"
         />
       </div>
-      <textarea value={content} onChange={handleContent} />
+      <textarea value={content} {...bindContent} />
       <input type="submit" value="Create" />
     </form>
   );
