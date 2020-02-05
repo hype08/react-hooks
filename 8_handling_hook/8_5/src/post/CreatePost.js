@@ -35,7 +35,7 @@ export default function CreatePost() {
   }, [post]);
 
   function handleContent(e) {
-    setContent
+    setContent(e.target.value)
   }
 
   function handleCreate() {
