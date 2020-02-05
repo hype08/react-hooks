@@ -3,11 +3,18 @@ import { useResource } from "react-request-hook";
 import { useNavigation } from "react-navi";
 import { StateContext } from "../contexts";
 import { useInput } from "react-hookedup";
-
+import useUndo from 'use-undo';
 export default function CreatePost() {
   const { state, dispatch } = useContext(StateContext);
   const { user } = state;
-  const { value: title, bindToInput: bindTitle } = useInput("");
+  const [undoContent, {
+    set: setContent,
+    undo, 
+    redo, 
+    canUndo, 
+    canRedo
+  }] = useUndo("")
+  const content = undoContent.present
   const { value: content, bindToInput: bindContent } = useInput("");
 
   // pass post data to the createPost function.
@@ -26,6 +33,10 @@ export default function CreatePost() {
       navigation.navigate(`/view/${post.data.id}`);
     }
   }, [post]);
+
+  function handleContent(e) {
+    setContent
+  }
 
   function handleCreate() {
     createPost({ title, author: user, content });
@@ -51,7 +62,7 @@ export default function CreatePost() {
           id="create-title"
         />
       </div>
-      <textarea value={content} {...bindContent} />
+      <textarea value={content} onChange={handleContent} />
       <input type="submit" value="Create" />
     </form>
   );
