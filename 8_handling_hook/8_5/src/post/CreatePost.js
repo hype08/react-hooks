@@ -2,20 +2,19 @@ import React, { useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
 import { useNavigation } from "react-navi";
 import { StateContext } from "../contexts";
+import useUndo from "use-undo";
 import { useInput } from "react-hookedup";
-import useUndo from 'use-undo';
 export default function CreatePost() {
   const { state, dispatch } = useContext(StateContext);
   const { user } = state;
-  const [undoContent, {
-    set: setContent,
-    undo, 
-    redo, 
-    canUndo, 
-    canRedo
-  }] = useUndo("")
-  const content = undoContent.present
-  const { value: content, bindToInput: bindContent } = useInput("");
+
+  const { value: title, bindToInput: bindTitle } = useInput;
+
+  const [
+    undoContent,
+    { set: setContent, undo, redo, canUndo, canRedo }
+  ] = useUndo("");
+  const content = undoContent.present;
 
   // pass post data to the createPost function.
   // we dont need to store the post in state, so ignore first value of array by not specifying it and putting a comma.
@@ -35,7 +34,7 @@ export default function CreatePost() {
   }, [post]);
 
   function handleContent(e) {
-    setContent(e.target.value)
+    setContent(e.target.value);
   }
 
   function handleCreate() {
@@ -63,6 +62,12 @@ export default function CreatePost() {
         />
       </div>
       <textarea value={content} onChange={handleContent} />
+      <button type="button" onClick={undo} disabled={!canUndo}>
+        Undo
+      </button>
+      <button type="button" onClick={redo} disabled={!canRedo}>
+        Redo
+      </button>
       <input type="submit" value="Create" />
     </form>
   );
