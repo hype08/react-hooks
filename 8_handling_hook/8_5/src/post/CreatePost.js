@@ -18,6 +18,7 @@ export default function CreatePost() {
     { set: setContent, undo, redo, canUndo, canRedo }
   ] = useUndo("");
 
+  // allow undos in time intervals
   const [setDebounce, cancelDebounce] = useDebouncedCallback(value => {
     setContent(value);
   }, 200);
